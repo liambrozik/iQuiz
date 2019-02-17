@@ -14,6 +14,7 @@
 		0C4354A92217A6FE00F4E1EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4354A72217A6FE00F4E1EE /* LaunchScreen.storyboard */; };
 		0C4354B42217A6FE00F4E1EE /* iQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4354B32217A6FE00F4E1EE /* iQuizTests.swift */; };
 		0C4354BF2217A6FE00F4E1EE /* iQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4354BE2217A6FE00F4E1EE /* iQuizUITests.swift */; };
+		0C4354CD2218C7C800F4E1EE /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4354CC2218C7C800F4E1EE /* QuizViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		0C4354BA2217A6FE00F4E1EE /* iQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4354BE2217A6FE00F4E1EE /* iQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iQuizUITests.swift; sourceTree = "<group>"; };
 		0C4354C02217A6FE00F4E1EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C4354CC2218C7C800F4E1EE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				0C4354A52217A6FE00F4E1EE /* Assets.xcassets */,
 				0C4354A72217A6FE00F4E1EE /* LaunchScreen.storyboard */,
 				0C4354AA2217A6FE00F4E1EE /* Info.plist */,
+				0C4354CC2218C7C800F4E1EE /* QuizViewController.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C4354CD2218C7C800F4E1EE /* QuizViewController.swift in Sources */,
 				0C4354A12217A6FC00F4E1EE /* ViewController.swift in Sources */,
 				0C43549F2217A6FC00F4E1EE /* AppDelegate.swift in Sources */,
 			);

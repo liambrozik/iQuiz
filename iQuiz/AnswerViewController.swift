@@ -14,11 +14,11 @@ class AnswerViewController: UIViewController {
     var correct = 0
     var total = 0
     var currentQuestion = 0
-    var quiz : Quiz = Quiz(title: "", description: "", questions: ["" : [""]])
+    var quiz : QuizJSON?
     @IBOutlet weak var reveal: UILabel!
     
     @IBAction func nextPress(_ sender: UIButton) {
-        if (currentQuestion < Array(quiz.questions).count - 1) {
+        if (currentQuestion < Array(quiz!.questions!).count - 1) {
             currentQuestion += 1
             self.performSegue(withIdentifier: "quizSegue", sender: self)
         } else {
@@ -37,7 +37,7 @@ class AnswerViewController: UIViewController {
         else if segue.identifier == "quizSegue"
         {
             let vc = segue.destination as? QuizViewController
-            vc?.quiz = quiz
+            vc?.quiz = quiz!
             vc?.currentQuestion = currentQuestion
             vc?.totalQ = total
             vc?.correctAns = correct

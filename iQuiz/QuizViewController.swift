@@ -13,7 +13,7 @@ class QuizViewController: UIViewController {
     var currentQuestion : Int = 0
     var correctAns : Int = 0
     var totalQ : Int = 0
-    var quiz : Quiz = Quiz(title: "", description: "", questions: ["" : [""]])
+    var quiz : QuizJSON?
     @IBOutlet weak var ans1: UIButton!
     @IBOutlet weak var ans2: UIButton!
     @IBOutlet weak var ans3: UIButton!
@@ -37,10 +37,10 @@ class QuizViewController: UIViewController {
     }
     
     @IBAction func answerSelect(_ sender: UIButton) {
-        let answer = Int(Array(quiz.questions)[currentQuestion].value[0])
-        let answerText = Array(quiz.questions)[currentQuestion].value[answer!]
+        let answer = Int(Array(quiz!.questions!)[currentQuestion].answer)! - 1
+        let answerText = Array(quiz!.questions!)[currentQuestion].answers[answer]
         totalQ += 1
-        if (sender.tag != answer) {
+        if (sender.tag != answer + 1) {
             message = "Incorrect. The answer is \(answerText)"
         } else {
             message = "Correct!"
@@ -59,12 +59,13 @@ class QuizViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let questions = quiz.questions
-        questionTitle.text = Array(questions)[currentQuestion].key
-        ans1.setTitle(Array(questions)[currentQuestion].value[1], for: .normal)
-        ans2.setTitle(Array(questions)[currentQuestion].value[2], for: .normal)
-        ans3.setTitle(Array(questions)[currentQuestion].value[3], for: .normal)
-        ans4.setTitle(Array(questions)[currentQuestion].value[4], for: .normal)
+        let questions = quiz!.questions
+        questionTitle.text = questions![currentQuestion].text
+        print(questions![currentQuestion])
+        ans1.setTitle(questions![currentQuestion].answers[0], for: .normal)
+        ans2.setTitle(questions![currentQuestion].answers[1], for: .normal)
+        ans3.setTitle(questions![currentQuestion].answers[2], for: .normal)
+        ans4.setTitle(questions![currentQuestion].answers[3], for: .normal)
         
         // Do any additional setup after loading the view.s
     }

@@ -7,25 +7,66 @@
 //
 
 import UIKit
+
 class QuizViewController: UIViewController {
 
-    var question1: String = ""
-    var question2: String = ""
-    var question3: String = ""
-    var question4: String = ""
+    var currentQuestion : Int = 0
+    var correctAns : Int = 0
+    var totalQ : Int = 0
+    var quiz : Quiz = Quiz(title: "", description: "", questions: ["" : [""]])
+    @IBOutlet weak var ans1: UIButton!
+    @IBOutlet weak var ans2: UIButton!
+    @IBOutlet weak var ans3: UIButton!
+    @IBOutlet weak var ans4: UIButton!
+    @IBOutlet weak var questionTitle: UILabel!
+    var message = ""
+    @IBOutlet weak var nextButton: UIButton!
     
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label3: UILabel!
-    @IBOutlet weak var label4: UILabel!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is AnswerViewController
+        {
+            let vc = segue.destination as? AnswerViewController
+            vc?.correct = correctAns
+            vc?.total = totalQ
+            vc?.currentQuestion = currentQuestion
+            vc?.quiz = quiz
+            vc?.message = message
+        }
+    }
+    
+    @IBAction func answerSelect(_ sender: UIButton) {
+        let answer = Int(Array(quiz.questions)[currentQuestion].value[0])
+        let answerText = Array(quiz.questions)[currentQuestion].value[answer!]
+        totalQ += 1
+        if (sender.tag != answer) {
+            message = "Incorrect. The answer is \(answerText)"
+        } else {
+            message = "Correct!"
+            correctAns += 1
+        }
+        self.performSegue(withIdentifier: "answerSegue", sender: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        label1?.text = question1
-        label2?.text = question2
-        label3?.text = question3
-        label4?.text = question4
-        // Do any additional setup after loading the view.
+        let questions = quiz.questions
+        questionTitle.text = Array(questions)[currentQuestion].key
+        ans1.setTitle(Array(questions)[currentQuestion].value[1], for: .normal)
+        ans2.setTitle(Array(questions)[currentQuestion].value[2], for: .normal)
+        ans3.setTitle(Array(questions)[currentQuestion].value[3], for: .normal)
+        ans4.setTitle(Array(questions)[currentQuestion].value[4], for: .normal)
+        
+        // Do any additional setup after loading the view.s
     }
     
 

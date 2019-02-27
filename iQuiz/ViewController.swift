@@ -67,21 +67,18 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        var currentQuiz : Quiz
         if segue.destination is QuizViewController
         {
             let vc = segue.destination as? QuizViewController
-            let quiz: Quiz = quizzes[selected]
-            let questions = quiz.questions
-            vc?.question1 = Array(questions)[0].key
-            vc?.question2 = Array(questions)[1].key
-            vc?.question3 = Array(questions)[2].key
-            vc?.title = quiz.title
+            currentQuiz = quizzes[selected]
+            vc?.quiz = currentQuiz
         }
     }
     
     func makeQuizzes() -> [Quiz] {
         let q1: Quiz = Quiz(title: "Mathematics", description: "Arithmetic and algebraic operations", questions: ["What is 2+2?": ["1", "4", "Fish", "x", "Sandwich"], "y = 5x - 1, for y = 3, what is x?": ["2", "7", "10", "25", "3"], "83 modulo 9": ["3", "0", "1", "2", "4"]])
-        let q2: Quiz = Quiz(title: "Marvel Super Heroes", description: "Marvel comics super heroes", questions: ["Which hero is from norse mythology?": ["2", "Captain America", "Thor", "Ironman", "Spiderman"], "Which hero is not licensed for film by Disney?": ["4", "Captain America", "Thor", "Ironman", "Spiderman"], "Which of these heroes is not a Marvel superhero?": ["3", "Black Widow", "Hawkeye", "Captain Marvel", "Wolverine"]])
+        let q2: Quiz = Quiz(title: "Marvel Super Heroes", description: "Marvel comics super heroes", questions: ["Which hero is from norse mythology?": ["2", "Captain America", "Thor", "Ironman", "Spiderman"], "Which hero is not licensed for film by Disney?": ["4", "Captain America", "Thor", "Ironman", "Spiderman"], "Which of these heroes is not a Marvel superhero?": ["3", "Black Widow", "Hawkeye", "Joker", "Wolverine"]])
         let q3: Quiz = Quiz(title: "Science", description: "The broad topic of Science", questions: ["Which of the following is pseudoscience?": ["2", "Ornithology", "Astrology", "Nutrition", "Pharmacology"], "Which branch of science studies cancer?": ["3", "Podiatry", "Canerology", "Oncology", "Bionetics"], "Which branch of science studies fossils?": ["4", "Archaeology", "Architecture", "Dianetics", "Paleontology"]])
         return [q1, q2, q3]
     }
